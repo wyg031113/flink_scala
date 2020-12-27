@@ -3,6 +3,9 @@ package org.myflink
 import org.apache.flink.api.common.functions.{ReduceFunction, RichFlatMapFunction, RichMapFunction}
 import org.apache.flink.api.common.state._
 import org.apache.flink.configuration.Configuration
+import org.apache.flink.contrib.streaming.state.RocksDBStateBackend
+import org.apache.flink.runtime.state.filesystem.FsStateBackend
+import org.apache.flink.runtime.state.memory.MemoryStateBackend
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.util.Collector
 
@@ -13,6 +16,10 @@ object StateCheck {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
+    //内存，文件系统，rocksdb状态后端
+    //env.setStateBackend(new MemoryStateBackend())
+    //env.setStateBackend(new FsStateBackend("hdfs://xxx"))
+    //env.setStateBackend(new RocksDBStateBackend("rocksdb://xxxx")) //可以开启增量存盘
     var originStream = env.socketTextStream("10.227.20.135", 7777)
     var stream = originStream
       .map((x)=>{
