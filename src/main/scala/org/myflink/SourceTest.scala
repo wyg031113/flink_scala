@@ -30,7 +30,7 @@ object SourceTest {
     stream2
       .map(Line2Sensor _)
       .print
-    //从kafka读取数据
+    //从kafka读取数据 kafka生产：./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sensor
     var property = new Properties()
     property.setProperty("bootstrap.servers","10.227.20.135:9092")
     property.setProperty("group.id", "consumer-group")

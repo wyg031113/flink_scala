@@ -7,6 +7,7 @@ import org.apache.flink.util.Collector
 object SideOutputTest {
   def main(args: Array[String]): Unit = {
     var env = StreamExecutionEnvironment.getExecutionEnvironment
+    //开启端口：nc -k -l -p 7777， 输入sensor文件内容
     var originStream = env.socketTextStream("10.227.20.135", 7777)
     var stream = originStream.map(x=>{
       val y = x.split(",")

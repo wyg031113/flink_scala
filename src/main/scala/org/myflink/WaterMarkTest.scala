@@ -13,6 +13,7 @@ object WaterMarkTest {
     //env.setStreamTimeCharacteristic(TimeCharacteristic.ProcessingTime) //使用flink处理时间
     env.getConfig.setAutoWatermarkInterval(500) //设置默认watermark间隔
     //var originStream = env.readTextFile("C:\\Users\\huangyan\\IdeaProjects\\FlinkMaven\\src\\main\\resources\\sensor.txt")
+    //开启端口：nc -k -l -p 7777， 输入sensor文件内容
     var originStream = env.socketTextStream("10.227.20.135", 7777)
     var stream = originStream
       .map((x)=>{

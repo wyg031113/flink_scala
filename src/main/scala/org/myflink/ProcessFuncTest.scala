@@ -19,6 +19,7 @@ ProcessAllWindowFunction
 object ProcessFuncTest {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
+    //开启端口：nc -k -l -p 7777， 输入sensor文件内容
     val origin = env.socketTextStream("10.227.20.135", 7777)
     val stream = origin.map(x=>{
       val y = x.split(",")

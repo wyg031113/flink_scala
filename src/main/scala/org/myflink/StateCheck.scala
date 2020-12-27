@@ -20,6 +20,7 @@ object StateCheck {
     //env.setStateBackend(new MemoryStateBackend())
     //env.setStateBackend(new FsStateBackend("hdfs://xxx"))
     //env.setStateBackend(new RocksDBStateBackend("rocksdb://xxxx")) //可以开启增量存盘
+    //开启端口：nc -k -l -p 7777， 输入sensor文件内容
     var originStream = env.socketTextStream("10.227.20.135", 7777)
     var stream = originStream
       .map((x)=>{

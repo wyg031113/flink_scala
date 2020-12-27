@@ -10,6 +10,7 @@ object StreamWordCount {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     //env.setParallelism(2)
     //接收socket文本流
+    //开启端口：nc -k -l -p 7777， 输入sensor文件内容
     val inputDataStream:DataStream[String] = env.socketTextStream(host, port)
     val resultDataStream = inputDataStream
       .flatMap(_.split(" "))
